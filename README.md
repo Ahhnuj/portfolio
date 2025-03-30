@@ -6,7 +6,6 @@ A personal portfolio website showcasing my skills, projects, and journey as a ba
 
 - Dynamic portfolio showcasing projects and skills
 - Interactive career progress visualization
-- Blog section for sharing thoughts and experiences
 - Professional yet engaging design
 - Responsive layout for all devices
 - Contact information and social links
