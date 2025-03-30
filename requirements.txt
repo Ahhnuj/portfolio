@@ -1,0 +1,11 @@
+Django==5.0.2
+django-crispy-forms==2.1
+crispy-bootstrap5==2024.2
+Pillow==10.2.0
+numpy==1.26.4
+pandas==2.2.1
+matplotlib==3.8.3
+python-dotenv==1.0.1
+django-allauth==0.61.1
+django-taggit==5.0.1
+markdown==3.5.2 

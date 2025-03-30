@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills - Anuj Tiwari{% endblock %}
+
+{% block extra_css %}
+<style>
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+}
+
+.card-title {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5em 1em;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <h1 class="text-center mb-5">My Skills</h1>
+
+    {% for category, skills in skills_by_category.items %}
+    <div class="mb-5">
+        <h3 class="text-center mb-4">{{ category }}</h3>
+        <div class="row g-4">
+            {% for skill in skills %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ skill.name }}</h4>
+                        <p class="text-muted">{{ skill.category_display }}</p>
+                        <div class="progress">
+                            <div class="progress-bar" 
+                                 role="progressbar" 
+                                 style="--progress-width: {{ skill.percentage }}%"
+                                 aria-valuenow="{{ skill.proficiency }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="5">
+                            </div>
+                        </div>
+                        <p class="mb-0 d-flex justify-content-between align-items-center">
+                            <span class="text-muted">{{ skill.level_text }}</span>
+                            <span class="badge bg-primary">{{ skill.proficiency }}/5</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 

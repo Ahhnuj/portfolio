@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}About Me - Anuj Tiwari{% endblock %}
+
+{% block extra_css %}
+<style>
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .profile-image {
+        transition: transform 0.3s ease;
+    }
+
+    .profile-image:hover {
+        transform: scale(1.05);
+    }
+
+    .social-links a {
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #0d6efd !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Profile Section -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 fade-in">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <img src="https://via.placeholder.com/150" alt="Anuj Tiwari" 
+                                 class="rounded-circle img-fluid profile-image" 
+                                 style="max-width: 150px;">
+                        </div>
+                        <h3 class="card-title">Anuj Tiwari</h3>
+                        <p class="text-muted">Backend Developer</p>
+                        <div class="social-links mb-3">
+                            <a href="https://github.com/anujsngh" target="_blank" class="text-dark me-3"><i class="fab fa-github fa-lg"></i></a>
+                            <a href="https://www.linkedin.com/in/anujsngh" target="_blank" class="text-dark me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                            <a href="mailto:anujsngh@outlook.com" class="text-dark"><i class="fas fa-envelope fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <div class="card mb-4 fade-in">
+                    <div class="card-body">
+                        <h2 class="card-title">About Me</h2>
+                        <p class="lead">Backend developer who loves writing clean code and playing chess..</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h3 class="h5">Core Skills</h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fab fa-python text-primary me-2"></i>Python Development</li>
+                                    <li class="mb-2"><i class="fas fa-cube text-primary me-2"></i>Django Framework</li>
+                                    <li class="mb-2"><i class="fas fa-flask text-primary me-2"></i>Flask Development</li>
+                                    <li class="mb-2"><i class="fas fa-database text-primary me-2"></i>Database Design</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="h5">Additional Skills</h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-code text-primary me-2"></i>Golang</li>
+                                    <li class="mb-2"><i class="fas fa-cogs text-primary me-2"></i>Rust (Learning)</li>
+                                    <li class="mb-2"><i class="fas fa-calculator text-primary me-2"></i>Data Analysis</li>
+                                    <li class="mb-2"><i class="fas fa-server text-primary me-2"></i>System Architecture</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-4">Beyond Coding</h3>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="card border-0 bg-light mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-square-root-alt text-primary me-2"></i>Mathematics Enthusiast</h5>
+                                        <p class="card-text">Passionate about mathematical problem-solving and algorithmic challenges. Love exploring the intersection of math and programming.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-0 bg-light mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-film text-primary me-2"></i>Cinephile</h5>
+                                        <p class="card-text">Avid film enthusiast with a deep appreciation for storytelling and cinematography. Always exploring different genres and cultures through cinema.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-0 bg-light mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-chess text-primary me-2"></i>Chess </h5>
+                                        <p class="card-text">Strategic thinker who enjoys the mental challenge of chess. The game's complexity helps in approaching programming problems systematically.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-0 bg-light mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fas fa-chart-line text-primary me-2"></i>Quantitative Finance</h5>
+                                        <p class="card-text">Fascinated by the intersection of mathematics and finance. Exploring algorithmic trading strategies and financial modeling techniques.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg">Get in Touch</a>
+                        </div>
+
+                        <!-- Humorous Warning -->
+                        <div class="text-center mt-4">
+                            <small class="text-muted" style="font-style: italic;">
+                                <i class="fas fa-exclamation-triangle text-warning"></i> 
+                                Backend developer—so don't expect a crazy UI. If it works, it works! 
+                                <i class="fas fa-code text-primary"></i>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
+{% endblock %} 

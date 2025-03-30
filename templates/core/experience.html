@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}My Experience - Anuj Tiwari{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="section-title text-center mb-5">My Experience</h1>
+        
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="timeline">
+                    {% for experience in experiences %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">{{ experience.title }}</h5>
+                                <span class="badge bg-primary">{{ experience.company }}</span>
+                            </div>
+                            <h6 class="card-subtitle mb-3 text-muted">{{ experience.location }}</h6>
+                            <p class="card-text">{{ experience.description }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    {{ experience.start_date|date:"F Y" }} - 
+                                    {% if experience.current %}
+                                        Present
+                                    {% else %}
+                                        {{ experience.end_date|date:"F Y" }}
+                                    {% endif %}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Education Section -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <h2 class="section-title mb-4">Education</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Bachelor's Degree in Computer Science</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">University Name</h6>
+                        <p class="card-text">Currently pursuing my degree while working on personal projects and gaining practical experience.</p>
+                        <p class="card-text">
+                            <small class="text-muted">2020 - Present</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Information -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h3 class="card-title">Additional Information</h3>
+                        <p class="lead">While I'm still early in my career, I'm passionate about learning and growing as a developer. I actively:</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-code-branch text-primary me-2"></i>Contribute to open-source projects</li>
+                            <li><i class="fas fa-book text-primary me-2"></i>Read technical books and documentation</li>
+                            <li><i class="fas fa-users text-primary me-2"></i>Participate in developer communities</li>
+                            <li><i class="fas fa-project-diagram text-primary me-2"></i>Work on personal projects to learn new technologies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 0;
+    }
+}
+</style>
+{% endblock %} 

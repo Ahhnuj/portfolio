@@ -1,0 +1,354 @@
+{% extends 'base.html' %}
+
+{% block title %}Anuj Tiwari - Backend Developer{% endblock %}
+
+{% block extra_css %}
+<style>
+    .progress {
+        height: 10px !important;
+        background-color: #e9ecef;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        background: #0d6efd;
+        border-radius: 5px;
+        transition: width 1.2s ease-in-out;
+        width: 0%;  /* Start at 0% */
+    }
+
+    .progress-bar.animated {
+        width: var(--progress-width);  /* Final width set by data attribute */
+    }
+
+    .progress-bar-striped {
+        background-image: linear-gradient(45deg,
+            rgba(255,255,255,.15) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255,255,255,.15) 50%,
+            rgba(255,255,255,.15) 75%,
+            transparent 75%,
+            transparent);
+        background-size: 1rem 1rem;
+    }
+
+    .progress-bar-animated {
+        animation: progress-bar-stripes 1s linear infinite;
+    }
+
+    @keyframes progress-bar-stripes {
+        0% { background-position-x: 1rem; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section position-relative overflow-hidden">
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4 text-gradient">Hi, I'm Anuj Tiwari</h1>
+                <p class="lead mb-4 text-muted">A passionate backend developer focused on building efficient systems and optimizing code. I specialize in Python, Golang, and exploring low-level programming.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'core:about' %}" class="btn btn-primary btn-lg px-4 py-3 rounded-pill">About Me</a>
+                    <a href="{% url 'core:contact' %}" class="btn btn-outline-primary btn-lg px-4 py-3 rounded-pill">Contact Me</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <div class="hero-image-wrapper">
+                        <img src="https://via.placeholder.com/500" alt="Anuj Tiwari" class="img-fluid rounded-4 shadow-lg">
+                        <div class="hero-shape"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-6 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">My Skills</h2>
+        <div class="row g-4">
+            {% for skill in skills %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3">{{ skill.name }}</h5>
+                        <p class="card-text text-muted mb-3">{{ skill.get_category_display }}</p>
+                        <div class="progress">
+                            <div class="progress-bar" 
+                                 role="progressbar" 
+                                 style="--progress-width: {{ skill.percentage }}%"
+                                 aria-valuenow="{{ skill.proficiency }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="5">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted fw-bold">Proficiency</small>
+                            <small class="badge bg-primary">{{ skill.proficiency }}/5</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Data Visualization Section -->
+<section class="py-6">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Skills Analysis</h2>
+        
+        <!-- Radar Chart -->
+        <div class="row mb-6">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3 class="card-title text-center mb-4">Skills Overview</h3>
+                        <img src="data:image/png;base64,{{ radar_chart }}" alt="Skills Radar Chart" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3 class="card-title text-center mb-4">Skill Distribution</h3>
+                        <img src="data:image/png;base64,{{ distribution }}" alt="Skill Distribution" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Problem-Solving Showcase Section -->
+<section class="py-6 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Problem-Solving Showcase</h2>
+        <div class="row g-4">
+            <!-- System Architecture Card -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                                <i class="fas fa-sitemap text-primary"></i>
+                            </div>
+                            <h5 class="card-title mb-0">System Architecture</h5>
+                        </div>
+                        <p class="card-text text-muted mb-3">I approach each project by first designing scalable architectures that can handle future growth. My focus is on:</p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Microservices Design</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>API Development</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>System Integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Quality Card -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-box bg-warning bg-opacity-10 rounded-circle p-3 me-3">
+                                <i class="fas fa-code text-warning"></i>
+                            </div>
+                            <h5 class="card-title mb-0">Code Quality</h5>
+                        </div>
+                        <p class="card-text text-muted mb-3">Quality is non-negotiable in my development process. I ensure:</p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Clean Code Practices</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Comprehensive Testing</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Code Documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem Solving Card -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-box bg-success bg-opacity-10 rounded-circle p-3 me-3">
+                                <i class="fas fa-lightbulb text-success"></i>
+                            </div>
+                            <h5 class="card-title mb-0">Problem Solving</h5>
+                        </div>
+                        <p class="card-text text-muted mb-3">Every challenge is an opportunity to innovate. My approach includes:</p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Analytical Thinking</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Creative Solutions</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Continuous Learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Philosophy -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm bg-dark text-white">
+                    <div class="card-body p-4 text-center">
+                        <h3 class="mb-4">My Code Philosophy</h3>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="philosophy-item">
+                                    <i class="fas fa-rocket mb-3 fa-2x text-primary"></i>
+                                    <h5>Efficiency First</h5>
+                                    <p class="mb-0 text-muted">Optimizing for performance without compromising readability</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="philosophy-item">
+                                    <i class="fas fa-shield-alt mb-3 fa-2x text-warning"></i>
+                                    <h5>Security Focused</h5>
+                                    <p class="mb-0 text-muted">Building with security best practices from the ground up</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="philosophy-item">
+                                    <i class="fas fa-expand-arrows-alt mb-3 fa-2x text-success"></i>
+                                    <h5>Scalable Design</h5>
+                                    <p class="mb-0 text-muted">Creating systems that grow with your needs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient {
+    background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+}
+
+.hero-image-wrapper {
+    position: relative;
+}
+
+.hero-shape {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+    border-radius: 1rem;
+    z-index: -1;
+    transform: rotate(5deg);
+}
+
+.hover-lift {
+    transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.py-6 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.progress {
+    background-color: #e9ecef;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+    background-image: linear-gradient(45deg, #0d6efd, #0dcaf0);
+    transition: width 0.6s ease;
+}
+
+.progress-bar-striped {
+    background-size: 1rem 1rem;
+}
+
+.card:hover .progress-bar {
+    animation: progress-animation 1s linear infinite;
+}
+
+@keyframes progress-animation {
+    0% { background-position: 1rem 0; }
+    100% { background-position: 0 0; }
+}
+
+.icon-box {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.philosophy-item {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.philosophy-item:hover {
+    transform: translateY(-5px);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);  // Stop observing once animated
+            }
+        });
+    }, { threshold: 0.5 });  // Trigger when 50% of the element is visible
+
+    // Observe all progress bars
+    document.querySelectorAll('.progress-bar').forEach(bar => {
+        observer.observe(bar);
+    });
+});
+</script>
+
+<!-- Call to Action -->
+<section class="py-6 bg-gradient text-primary">
+    <div class="container text-center">
+        <h2 class="display-4 mb-4">Let's Build Something together</h2>
+        <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg px-4 py-3 rounded-pill">Start a Project</a>
+    </div>
+</section>
+{% endblock %} 

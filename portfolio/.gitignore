@@ -1,0 +1,9 @@
+# Ignore database, virtual environment, and compiled files
+db.sqlite3
+__pycache__/
+venv/
+.env
+staticfiles/
+media/
+.DS_Store
+*.log
